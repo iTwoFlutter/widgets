@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_widgets/page/page_count_down.dart';
 import 'package:flutter_widgets/page/page_sku.dart';
 
 void main() {
@@ -35,6 +36,8 @@ class _Home extends StatelessWidget {
             children: [
               Padding(padding: EdgeInsets.symmetric(vertical: 15)),
               CupertinoButton(child: Text("Sku"), onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => SkuPage())), color: Colors.blue),
+              Padding(padding: EdgeInsets.symmetric(vertical: 15)),
+              CupertinoButton(child: Text("倒计时"), onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => CountDownPage())), color: Colors.blue),
             ],
           ),
         ),

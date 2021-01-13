@@ -1,9 +1,8 @@
-
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_widgets/util/util_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/util/util_extension.dart';
 
 typedef SkuItemWidgetBuilder = Widget Function(BuildContext context, ISkuTag sku);
 
@@ -13,7 +12,12 @@ class Sku extends StatefulWidget {
   final void Function(ISkuBean sku) onSelected;
   final bool zeroStockSelectEnable;
 
-  Sku({Key key, @required this.skuBeanList, @required this.onSelected, this.zeroStockSelectEnable = true}) : super(key: key);
+  Sku({
+    Key key,
+    @required this.skuBeanList,
+    @required this.onSelected,
+    this.zeroStockSelectEnable = true,
+  }) : super(key: key);
 
   @override
   _SkuState createState() => _SkuState();
@@ -158,10 +162,10 @@ class _SkuState extends State<Sku> {
     _selectedTagMapTemp[tag.key] = tag.value;
 
     //包含已选 tag 和当前判断的 ISkuTag 的原始 skuBean
-    List<ISkuBean> containsSkuTag=  widget.skuBeanList.filter((e) => e.skuTagMap.containsAll(_selectedTagMapTemp));
-    if(containsSkuTag==null||containsSkuTag.isEmpty) return false;
-    if(!widget.zeroStockSelectEnable){
-      var bool = containsSkuTag.any((element) => element.iSkuStock!=0);
+    List<ISkuBean> containsSkuTag = widget.skuBeanList.filter((e) => e.skuTagMap.containsAll(_selectedTagMapTemp));
+    if (containsSkuTag == null || containsSkuTag.isEmpty) return false;
+    if (!widget.zeroStockSelectEnable) {
+      var bool = containsSkuTag.any((element) => element.iSkuStock != 0);
       return bool;
     }
     return true;
@@ -215,4 +219,3 @@ class SkuAttributeBean {
 
   SkuAttributeBean(this.key, this.value);
 }
-
